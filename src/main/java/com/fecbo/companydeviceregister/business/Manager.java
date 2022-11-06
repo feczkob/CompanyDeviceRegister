@@ -8,9 +8,13 @@ import java.util.Optional;
 public abstract class Manager {
 
     <T, K extends JpaRepository> T load(Integer id, K repository) {
+//        Class<T> persistentClass = (Class<T>)
+//                ((ParameterizedType)getClass().getGenericSuperclass())
+//                        .getActualTypeArguments()[0];
+
         Optional<T> found = repository.findById(id);
         if(found.isEmpty()) {
-            throw new NoSuchElementException(found.getClass() + " with id " + id + " not found.");
+            throw new NoSuchElementException("Entity" + " with id " + id + " not found.");
         }
         return found.get();
     }

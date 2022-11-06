@@ -2,6 +2,7 @@ package com.fecbo.companydeviceregister.client.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
@@ -29,19 +31,23 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "device_id")
+    @ToString.Include
     private Integer deviceId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
     @Column(name = "name")
+    @ToString.Include
     private String name;
 
     @NotNull(message = "error.'${validatedValue}'.empty")
     @Column(name = "description")
+    @ToString.Include
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
     @JsonBackReference
     @NotNull(message = "error.'${validatedValue}'.empty")
+    @ToString.Exclude
     private Worker worker;
 }

@@ -23,12 +23,16 @@ public class DeviceManager extends Manager {
         Device device = mapper.map(deviceRequest, Device.class);
         device.setWorker(worker);
         Device saved = deviceRepository.save(device);
-        return mapper.map(saved, DeviceResponse.class);
+        DeviceResponse response = mapper.map(saved, DeviceResponse.class);
+        response.setWorkerId(worker.getWorkerId());
+        return response;
     }
 
     public DeviceResponse getDeviceById(Integer id) {
         Device device = load(id, deviceRepository);
-        return mapper.map(device, DeviceResponse.class);
+        DeviceResponse response = mapper.map(device, DeviceResponse.class);
+        response.setWorkerId(device.getWorker().getWorkerId());
+        return response;
     }
 
     public void deleteDevice(Integer id) {

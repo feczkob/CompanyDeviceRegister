@@ -33,7 +33,7 @@ public class DeviceController {
     }
 
     @Operation
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deleteDevice(@PathVariable("id") Integer id) {
         manager.deleteDevice(id);
     }

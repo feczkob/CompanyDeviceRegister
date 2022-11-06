@@ -16,13 +16,13 @@ public class ExceptionHandlerControllerAdvice {
     public ResponseEntity<RestApiError> handleNoSuchElement(NoSuchElementException ex) {
         log.error(ex.getLocalizedMessage(), ex);
         RestApiError restApiError = new RestApiError(ex.getMessage());
-        return new ResponseEntity<>(restApiError, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<RestApiError>(restApiError, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<RestApiError> handleOthers(RuntimeException ex) {
         log.error(ex.getLocalizedMessage(), ex);
         RestApiError restApiError = new RestApiError(ex.getMessage());
-        return new ResponseEntity<>(restApiError, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<RestApiError>(restApiError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
