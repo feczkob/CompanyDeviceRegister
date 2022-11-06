@@ -11,12 +11,9 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 @JsonSerialize(using = RestApiError.RestErrorSerializer.class)
-public class RestApiError {
+public record RestApiError(@Getter String errorDetail) {
 
     private static final String JSON_PROP_NAME_ERROR_DETAIL = "errorDetail";
-
-    @Getter
-    private final String errorDetail;
 
     public static class RestErrorSerializer extends StdSerializer<RestApiError> {
         public RestErrorSerializer() {
@@ -30,8 +27,8 @@ public class RestApiError {
         @Override
         public void serialize(RestApiError restApiError, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeStartObject();
-            if (restApiError.getErrorDetail() != null) {
-                jsonGenerator.writeStringField(JSON_PROP_NAME_ERROR_DETAIL, restApiError.getErrorDetail());
+            if (restApiError.errorDetail() != null) {
+                jsonGenerator.writeStringField(JSON_PROP_NAME_ERROR_DETAIL, restApiError.errorDetail());
             }
             jsonGenerator.writeEndObject();
         }
