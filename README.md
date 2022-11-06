@@ -48,11 +48,11 @@ Worker }|--|| Group
 
 ### Endpoints
 #### Device (/device)
-| Method | Input         | Output         | Path  |
-|--------|---------------|----------------|-------|
-| POST   | DeviceRequest | DeviceResponse | -     |
-| GET    | -             | DeviceResponse | /{id} |
-| DELETE | -             | -              | /{id} |
+| Method | Input         | Output         | Path        |
+|--------|---------------|----------------|-------------|
+| POST   | DeviceRequest | DeviceResponse | -           |
+| GET    | -             | DeviceResponse | /{id}       |
+| DELETE | -             | -              | /{id}       |
 
 #### Worker (/worker)
 | Method | Input         | Output               | Path    |

@@ -5,6 +5,7 @@ import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,15 +22,15 @@ public class WorkerController {
     private final WorkerManager manager;
 
     @Operation
-    @GetMapping("/{id}")
-    public WorkerResponse getWorkerById(@PathVariable("id") Integer id) {
-        return manager.getWorkerById(id);
-    }
-
-    @Operation
     @PostMapping
     public WorkerResponse addWorker(@RequestBody WorkerRequest workerRequest) {
         return manager.addWorker(workerRequest);
+    }
+
+    @Operation
+    @GetMapping("/{id}")
+    public WorkerResponse getWorkerById(@PathVariable("id") Integer id) {
+        return manager.getWorkerById(id);
     }
 
     @Operation
@@ -37,5 +38,11 @@ public class WorkerController {
     public WorkerResponse modifyWorker(@PathVariable("id") Integer id,
                                        @RequestBody WorkerRequest workerRequest) {
         return manager.modifyWorker(id, workerRequest);
+    }
+
+    @Operation
+    @DeleteMapping("/{id}")
+    public void deleteWorker(@PathVariable("id") Integer id) {
+        manager.deleteWorker(id);
     }
 }
