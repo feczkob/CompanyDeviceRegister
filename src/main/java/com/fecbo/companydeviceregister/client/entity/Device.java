@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.client.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -34,5 +36,7 @@ public class Device {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
+    @JsonBackReference
+    @NotNull(message = "error.'${validatedValue}'.empty")
     private Worker worker;
 }

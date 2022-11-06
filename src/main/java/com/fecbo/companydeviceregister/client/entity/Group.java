@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.client.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -34,6 +36,8 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
+    @JsonBackReference
+    @NotNull(message = "error.'${validatedValue}'.empty")
     private Department department;
 
     private String description;

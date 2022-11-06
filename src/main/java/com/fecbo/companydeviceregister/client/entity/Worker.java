@@ -1,5 +1,7 @@
 package com.fecbo.companydeviceregister.client.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,10 +42,13 @@ public class Worker {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
+    @JsonBackReference
+    @NotNull(message = "error.'${validatedValue}'.empty")
     private Group group;
 
     private String details;
 
     @OneToMany(mappedBy = "worker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Device> devices = new HashSet<>();
 }

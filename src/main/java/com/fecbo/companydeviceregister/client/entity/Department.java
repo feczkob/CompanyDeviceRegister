@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.client.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import lombok.Getter;
@@ -38,5 +39,6 @@ public class Department {
     private String description;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private Set<Group> groups = new HashSet<>();
 }
