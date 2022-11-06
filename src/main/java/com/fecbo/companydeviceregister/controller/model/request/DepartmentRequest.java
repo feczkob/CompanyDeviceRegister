@@ -15,4 +15,5 @@ public class DepartmentRequest {
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
     private String name;
+    private String description;
 }

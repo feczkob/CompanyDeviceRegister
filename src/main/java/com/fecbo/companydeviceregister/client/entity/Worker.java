@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,17 +36,18 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "worker_id")
     @ToString.Include
+    @EqualsAndHashCode.Include
     private Integer workerId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
     @Column(name = "name")
     @ToString.Include
+    @EqualsAndHashCode.Include
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", updatable = false, insertable = false)
     @JsonBackReference
-    @NotNull(message = "error.'${validatedValue}'.empty")
     @ToString.Exclude
     private Group group;
 

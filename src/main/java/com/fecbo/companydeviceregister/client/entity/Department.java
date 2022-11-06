@@ -2,7 +2,6 @@ package com.fecbo.companydeviceregister.client.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,10 +32,12 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "department_id")
+    @EqualsAndHashCode.Include
     private Integer departmentId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
     @Column(name = "name")
+    @EqualsAndHashCode.Include
     private String name;
 
     @Column(name = "description")

@@ -32,11 +32,13 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "device_id")
     @ToString.Include
+    @EqualsAndHashCode.Include
     private Integer deviceId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
     @Column(name = "name")
     @ToString.Include
+    @EqualsAndHashCode.Include
     private String name;
 
     @NotNull(message = "error.'${validatedValue}'.empty")
@@ -47,7 +49,6 @@ public class Device {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id", updatable = false, insertable = false)
     @JsonBackReference
-    @NotNull(message = "error.'${validatedValue}'.empty")
     @ToString.Exclude
     private Worker worker;
 
