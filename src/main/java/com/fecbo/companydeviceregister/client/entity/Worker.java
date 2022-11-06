@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,9 +36,11 @@ public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer worker_id;
+    @Column(name = "worker_id")
+    private Integer workerId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
+    @Column(name = "name")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,6 +49,7 @@ public class Worker {
     @NotNull(message = "error.'${validatedValue}'.empty")
     private Group group;
 
+    @Column(name = "details")
     private String details;
 
     @OneToMany(mappedBy = "worker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -36,7 +36,7 @@ entity Device {
 --
 * worker_id: number <<FK>>
 * name: text
-* value: number
+* description: text
 }
 
 

@@ -11,10 +11,10 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WorkerResponse {
+public class DepartmentResponse {
 
-    private Integer workerId;
-    private Integer groupId;
+    private Integer departmentId;
     private String name;
-    private Set<DeviceResponse> devices;
+    private String description;
+    private Set<GroupResponse> groups;
 }

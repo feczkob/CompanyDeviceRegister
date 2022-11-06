@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,12 +28,16 @@ public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer device_id;
+    @Column(name = "device_id")
+    private Integer deviceId;
 
     @NotBlank(message = "error.'${validatedValue}'.empty")
+    @Column(name = "name")
     private String name;
 
-    private Integer value;
+    @NotNull(message = "error.'${validatedValue}'.empty")
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
