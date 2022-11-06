@@ -1,8 +1,6 @@
 package com.fecbo.companydeviceregister.business;
 
-import com.fecbo.companydeviceregister.client.entity.Group;
 import com.fecbo.companydeviceregister.client.entity.Worker;
-import com.fecbo.companydeviceregister.client.repository.GroupRepository;
 import com.fecbo.companydeviceregister.client.repository.WorkerRepository;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
@@ -15,13 +13,12 @@ import org.springframework.stereotype.Component;
 public class WorkerManager extends Manager {
 
     private final WorkerRepository workerRepository;
-    private final GroupRepository groupRepository;
     private final ModelMapper mapper;
 
     public WorkerResponse addWorker(WorkerRequest workerRequest) {
-        Group group = load(workerRequest.getGroupId(), groupRepository);
+//        Group group = load(workerRequest.getGroupId(), groupRepository);
         Worker worker = mapper.map(workerRequest, Worker.class);
-        worker.setGroup(group);
+//        worker.setGroup(group);
         Worker saved = workerRepository.save(worker);
         return mapper.map(saved, WorkerResponse.class);
     }
@@ -33,16 +30,14 @@ public class WorkerManager extends Manager {
 
     public WorkerResponse modifyWorker(Integer id, WorkerRequest workerRequest) {
         Worker worker = load(id, workerRepository);
-        Group group = load(workerRequest.getGroupId(), groupRepository);
+//        Group group = load(workerRequest.getGroupId(), groupRepository);
         Worker toBeModified = mapper.map(workerRequest, Worker.class);
-        toBeModified.setWorkerId(id);
-        toBeModified.setGroup(group);
+        toBeModified.setWorkerId(worker.getWorkerId());
+//        toBeModified.setGroup(group);
         return mapper.map(workerRepository.save(toBeModified), WorkerResponse.class);
     }
 
     public void deleteWorker(Integer id) {
-//        Worker worker = load(id, workerRepository);
-//        workerRepository.delete(worker);
         delete(id, workerRepository);
     }
 

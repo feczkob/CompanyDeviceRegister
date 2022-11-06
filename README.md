@@ -67,7 +67,6 @@ Worker }|--|| Group
 |--------|--------------|---------------------|---------|
 | POST   | GroupRequest | GroupResponse       | -       |
 | GET    | -            | GroupResponse       | /{id}   |
-| GET    | -            | List<GroupResponse> | /getAll |
 | DELETE | -            | -                   | /{id}   |
 
 #### Department (/department)

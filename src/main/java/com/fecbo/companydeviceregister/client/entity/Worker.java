@@ -45,11 +45,14 @@ public class Worker {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", updatable = false, insertable = false)
     @JsonBackReference
     @NotNull(message = "error.'${validatedValue}'.empty")
     @ToString.Exclude
     private Group group;
+
+    @Column(name = "group_id")
+    private Integer groupId;
 
     @Column(name = "details")
     @ToString.Include

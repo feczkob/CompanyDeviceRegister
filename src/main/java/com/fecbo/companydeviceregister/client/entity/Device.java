@@ -45,9 +45,12 @@ public class Device {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "worker_id")
+    @JoinColumn(name = "worker_id", updatable = false, insertable = false)
     @JsonBackReference
     @NotNull(message = "error.'${validatedValue}'.empty")
     @ToString.Exclude
     private Worker worker;
+
+    @Column(name = "worker_id")
+    private Integer workerId;
 }
