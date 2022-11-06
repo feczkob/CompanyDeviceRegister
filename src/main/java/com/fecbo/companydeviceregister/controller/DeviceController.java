@@ -1,9 +1,14 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.DeviceManager;
 import com.fecbo.companydeviceregister.controller.model.request.DeviceRequest;
 import com.fecbo.companydeviceregister.controller.model.response.DeviceResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +25,49 @@ public class DeviceController {
 
     private final DeviceManager manager;
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = DeviceResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @PostMapping
     public DeviceResponse addDevice(@RequestBody DeviceRequest deviceRequest) {
         return manager.addDevice(deviceRequest);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = DeviceResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @GetMapping("/{id}")
     public DeviceResponse getDeviceById(@PathVariable("id") Integer id) {
         return manager.getDeviceById(id);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @DeleteMapping("/{id}")
     public void deleteDevice(@PathVariable("id") Integer id) {

@@ -1,9 +1,14 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.WorkerManager;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +26,51 @@ public class WorkerController {
 
     private final WorkerManager manager;
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = WorkerResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @PostMapping
     public WorkerResponse addWorker(@RequestBody WorkerRequest workerRequest) {
         return manager.addWorker(workerRequest);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = WorkerResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @GetMapping("/{id}")
     public WorkerResponse getWorkerById(@PathVariable("id") Integer id) {
         return manager.getWorkerById(id);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = WorkerResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @PutMapping("/{id}")
     public WorkerResponse modifyWorker(@PathVariable("id") Integer id,
@@ -40,6 +78,15 @@ public class WorkerController {
         return manager.modifyWorker(id, workerRequest);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class)) })
+    })
     @Operation
     @DeleteMapping("/{id}")
     public void deleteWorker(@PathVariable("id") Integer id) {
