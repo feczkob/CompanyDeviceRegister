@@ -1,0 +1,36 @@
+@startuml
+entity Department {
+    * department_id: number
+    --
+    * name: text
+    description: text
+}
+
+entity Group {
+    * group_id: number
+    --
+    * name: text
+    * department_id: number
+    description
+}
+
+entity Worker {
+    * worker_id: number
+    --
+    * name: text
+    * group_id: number <<FK>>
+    details
+}
+
+entity Device {
+    * device_id: number
+    --
+    * name: text
+    * value: number
+}
+
+
+Department ||--o{ Group
+Worker ||--|{ Device
+Worker }|--|| Group
+@enduml

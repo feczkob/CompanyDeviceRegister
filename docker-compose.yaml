@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  postgres_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=fecbo
+      - POSTGRES_PASSWORD=my_Pw
+      - POSTGRES_DB=company_device_register
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_db_vol:/var/lib/postgresql/data
+    healthcheck:
+      test: curl -s https://localhost:5432 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_db_vol:
+    external: false
