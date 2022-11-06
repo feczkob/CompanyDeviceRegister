@@ -55,19 +55,20 @@ Worker }|--|| Group
 | DELETE | -             | -              | /{id} |
 
 #### Worker (/worker)
-| Method | Input         | Output         | Path  |
-|--------|---------------|----------------|-------|
-| POST   | WorkerRequest | WorkerResponse | -     |
-| GET    | -             | WorkerResponse | /{id} |
-| PUT    | WorkerRequest | id             | /{id} |
-| DELETE | -             | -              | /{id} |
+| Method | Input         | Output               | Path    |
+|--------|---------------|----------------------|---------|
+| POST   | WorkerRequest | WorkerResponse       | -       |
+| GET    | -             | WorkerResponse       | /{id}   |
+| PUT    | WorkerRequest | WorkerResponse       | /{id}   |
+| DELETE | -             | -                    | /{id}   |
 
 #### Group (/group)
-| Method | Input         | Output        | Path  |
-|--------|---------------|---------------|-------|
-| POST   | GroupRequest  | GroupResponse | -     |
-| GET    | -             | GroupResponse | /{id} |
-| DELETE | -             | -             | /{id} |
+| Method | Input        | Output              | Path    |
+|--------|--------------|---------------------|---------|
+| POST   | GroupRequest | GroupResponse       | -       |
+| GET    | -            | GroupResponse       | /{id}   |
+| GET    | -            | List<GroupResponse> | /getAll |
+| DELETE | -            | -                   | /{id}   |
 
 #### Department (/department)
 | Method | Input             | Output             | Path  |
@@ -75,6 +76,12 @@ Worker }|--|| Group
 | POST   | DepartmentRequest | DepartmentResponse | -     |
 | GET    | -                 | DepartmentResponse | /{id} |
 
+### How to run
+```console
+$ mvn clean install
+$ docker-compose up -d
+$ mvn spring-boot:run
+```
 
 ## Frontend
 

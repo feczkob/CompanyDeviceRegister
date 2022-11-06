@@ -18,4 +18,5 @@ public class WorkerRequest {
     private Integer groupId;
     @NotBlank(message = "error.'${validatedValue}'.empty")
     private String name;
+    private String details;
 }
