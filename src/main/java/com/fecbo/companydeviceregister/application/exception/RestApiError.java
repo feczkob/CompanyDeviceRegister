@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
-@RequiredArgsConstructor
 @JsonSerialize(using = RestApiError.RestErrorSerializer.class)
 public record RestApiError(@Getter String errorDetail) {
 
