@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -54,4 +55,9 @@ public class Device {
 
     @Column(name = "worker_id")
     private Integer workerId;
+
+    @Column(name = "time_of_registration")
+    @NotNull(message = "error.'${validatedValue}'.empty")
+    private LocalDateTime timeOfRegistration;
+
 }

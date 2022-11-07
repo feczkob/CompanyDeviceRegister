@@ -1,11 +1,14 @@
 # Company Device Register
 
 ## Description
+
 This microservice stores departments, groups, workers and their devices.
 Workers can have multiple devices and each worker is assigned to a group. A department is built by a set of groups.
 
 ## Backend
+
 ### Entity Relationship Diagram
+
 ```plantuml
 @startuml
 entity Department {
@@ -37,6 +40,7 @@ entity Device {
 * worker_id: number <<FK>>
 * name: text
 * description: text
+* timeOfRegistration: date-time
 }
 
 
@@ -47,14 +51,18 @@ Worker }|--|| Group
 ```
 
 ### Endpoints
-#### Device (/device)
-| Method | Input         | Output         | Path        |
-|--------|---------------|----------------|-------------|
-| POST   | DeviceRequest | DeviceResponse | -           |
-| GET    | -             | DeviceResponse | /{id}       |
-| DELETE | -             | -              | /{id}       |
 
+#### Device (/device)
+
+| Method | Input         | Output          | Path        |
+|--------|---------------|-----------------|-------------|
+| POST   | DeviceRequest | DeviceResponse  | -           |
+| GET    | -             | DeviceResponse  | /{id}       |
+| GET    | -             | List            | /getAll[^1] |
+| DELETE | -             | -               | /{id}       |
+[^1]: Sorted by timeOfRegistration.
 #### Worker (/worker)
+
 | Method | Input         | Output               | Path    |
 |--------|---------------|----------------------|---------|
 | POST   | WorkerRequest | WorkerResponse       | -       |
@@ -63,6 +71,7 @@ Worker }|--|| Group
 | DELETE | -             | -                    | /{id}   |
 
 #### Group (/group)
+
 | Method | Input        | Output              | Path    |
 |--------|--------------|---------------------|---------|
 | POST   | GroupRequest | GroupResponse       | -       |
@@ -70,12 +79,14 @@ Worker }|--|| Group
 | DELETE | -            | -                   | /{id}   |
 
 #### Department (/department)
+
 | Method | Input             | Output             | Path  |
 |--------|-------------------|--------------------|-------|
 | POST   | DepartmentRequest | DepartmentResponse | -     |
 | GET    | -                 | DepartmentResponse | /{id} |
 
 ### How to run
+
 ```console
 $ mvn clean install
 $ docker-compose up -d

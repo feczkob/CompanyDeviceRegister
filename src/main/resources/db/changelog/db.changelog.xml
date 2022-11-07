@@ -42,6 +42,9 @@
             <column name="worker_id" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
+            <column name="time_of_registration" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -98,5 +101,108 @@
                                  constraintName="FK_group_department_id" deferrable="false" initiallyDeferred="false"
                                  onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="department_id"
                                  referencedTableName="department" validate="true"/>
+    </changeSet>
+    
+    <changeSet id="Create dummy data" author="Feczkó Botond">
+        <insert tableName="department">
+            <column name="department_id" value="1"/>
+            <column name="name" value="HR"/>
+            <column name="description" value="Human Resources"/>
+        </insert>
+        <insert tableName="department">
+            <column name="department_id" value="2"/>
+            <column name="name" value="IT"/>
+            <column name="description" value="Department of Information Technology"/>
+        </insert>
+        <insert tableName="group_">
+            <column name="department_id" value="1"/>
+            <column name="group_id" value="1"/>
+            <column name="name" value="Office coordinators"/>
+            <column name="description" value="You should put your unwashed plates and cups to the dishwasher!"/>
+        </insert>
+        <insert tableName="group_">
+            <column name="department_id" value="2"/>
+            <column name="group_id" value="2"/>
+            <column name="name" value="Developers"/>
+            <column name="description" value="There are 10 types of people - those who can understand binary and those who can't."/>
+        </insert>
+        <insert tableName="group_">
+            <column name="department_id" value="2"/>
+            <column name="group_id" value="3"/>
+            <column name="name" value="Testers"/>
+            <column name="description" value="We can not spell BUGS without U."/>
+        </insert>
+        <insert tableName="worker">
+            <column name="worker_id" value="1"/>
+            <column name="details" value="Loves Candy Crush" />
+            <column name="name" value="Juci"/>
+            <column name="group_id" value="1"/>
+        </insert>
+        <insert tableName="worker">
+            <column name="worker_id" value="2"/>
+            <column name="details" value="Lead Developer"/>
+            <column name="name" value="Pista"/>
+            <column name="group_id" value="2"/>
+        </insert>
+        <insert tableName="worker">
+            <column name="worker_id" value="3"/>
+            <column name="details" value="Junior Developer, always messes up the merging."/>
+            <column name="name" value="Sanyi"/>
+            <column name="group_id" value="2"/>
+        </insert>
+        <insert tableName="worker">
+            <column name="worker_id" value="4"/>
+            <column name="details" value="Thinks out of the box."/>
+            <column name="name" value="Peti"/>
+            <column name="group_id" value="3"/>
+        </insert>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (1, 'With pink case', 'iPhone', 1, '2022-10-22 19:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (2, 'Charger has been lost twice so far.', 'Laptop', 1, '2022-7-22 19:12:10')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (3, '', 'Copier', 1, '2022-2-10 8:10:10')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (4, 'With 64 GB RAM', 'Acer Nitro 5', 2, '2022-10-11 10:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (5, '', 'iPhone', 2, '2022-9-23 8:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (6, '#1', 'Screen', 2, '2022-10-12 8:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (7, '#2', 'Screen', 2, '2022-10-12 8:12:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (8, 'With 32 GB RAM', 'Acer Nitro 5', 3, '2022-10-12 10:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (9, '', 'iPhone', 3, '2022-9-24 8:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (10, 'With M2 chip', 'MacBook Air', 4, '2022-8-12 10:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (11, '', 'iPhone', 4, '2022-9-24 8:10:25')
+        </sql>
+        <sql>
+            INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
+            VALUES (12, '', 'Apple Watch', 4, '2022-8-24 8:10:25')
+        </sql>
     </changeSet>
 </databaseChangeLog>
