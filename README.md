@@ -60,7 +60,7 @@ Worker }|--|| Group
 | GET    | -             | DeviceResponse  | /{id}       |
 | GET    | -             | List            | /getAll[^1] |
 | DELETE | -             | -               | /{id}       |
-[^1]: Sorted by timeOfRegistration.
+[^1]: With pagination and sorting.
 #### Worker (/worker)
 
 | Method | Input         | Output               | Path    |
