@@ -53,7 +53,6 @@ Worker }|--|| Group
 ### Endpoints
 
 #### Device (/device)
-
 | Method | Input         | Output          | Path        |
 |--------|---------------|-----------------|-------------|
 | POST   | DeviceRequest | DeviceResponse  | -           |
@@ -61,8 +60,8 @@ Worker }|--|| Group
 | GET    | -             | List            | /getAll[^1] |
 | DELETE | -             | -               | /{id}       |
 [^1]: With pagination and sorting.
-#### Worker (/worker)
 
+#### Worker (/worker)
 | Method | Input         | Output               | Path    |
 |--------|---------------|----------------------|---------|
 | POST   | WorkerRequest | WorkerResponse       | -       |
@@ -71,7 +70,6 @@ Worker }|--|| Group
 | DELETE | -             | -                    | /{id}   |
 
 #### Group (/group)
-
 | Method | Input        | Output              | Path    |
 |--------|--------------|---------------------|---------|
 | POST   | GroupRequest | GroupResponse       | -       |
@@ -79,7 +77,6 @@ Worker }|--|| Group
 | DELETE | -            | -                   | /{id}   |
 
 #### Department (/department)
-
 | Method | Input             | Output             | Path  |
 |--------|-------------------|--------------------|-------|
 | POST   | DepartmentRequest | DepartmentResponse | -     |
@@ -90,6 +87,7 @@ Worker }|--|| Group
 ```console
 $ mvn clean install
 $ docker-compose up -d
+$ mvn liquibase:update
 $ mvn spring-boot:run
 ```
 
