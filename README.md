@@ -1,10 +1,13 @@
 # Company Device Register
 
 ## Description
-
-This microservice stores departments, groups, workers and their devices.
+This project is being made for the courses Advanced Java Programming and Angular of the year 2022.
+The Spring Boot backend stores departments, groups, workers and their devices.
 Workers can have multiple devices and each worker is assigned to a group. A department is built by a set of groups.
-Users can retrieve information about departments, groups and workers.
+Users can retrieve information about departments, groups and workers using the Angular frontend.
+
+## Github repository
+The project is available at my [Github repository](https://github.com/feczkob/CompanyDeviceRegister).
 
 ## Backend
 
