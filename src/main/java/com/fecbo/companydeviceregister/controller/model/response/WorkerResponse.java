@@ -16,5 +16,6 @@ public class WorkerResponse {
     private Integer workerId;
     private Integer groupId;
     private String name;
+    private String details;
     private Set<DeviceResponse> devices;
 }

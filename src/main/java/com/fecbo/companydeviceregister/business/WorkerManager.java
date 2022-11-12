@@ -4,21 +4,23 @@ import com.fecbo.companydeviceregister.client.entity.Worker;
 import com.fecbo.companydeviceregister.client.repository.WorkerRepository;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-@RequiredArgsConstructor
 public class WorkerManager extends Manager {
 
     private final WorkerRepository workerRepository;
-    private final ModelMapper mapper;
+
+    public WorkerManager(ModelMapper mapper, WorkerRepository workerRepository) {
+        super(mapper);
+        this.workerRepository = workerRepository;
+    }
 
     public WorkerResponse addWorker(WorkerRequest workerRequest) {
-//        Group group = load(workerRequest.getGroupId(), groupRepository);
         Worker worker = mapper.map(workerRequest, Worker.class);
-//        worker.setGroup(group);
         Worker saved = workerRepository.save(worker);
         return mapper.map(saved, WorkerResponse.class);
     }
@@ -30,15 +32,17 @@ public class WorkerManager extends Manager {
 
     public WorkerResponse modifyWorker(Integer id, WorkerRequest workerRequest) {
         Worker worker = load(id, workerRepository);
-//        Group group = load(workerRequest.getGroupId(), groupRepository);
         Worker toBeModified = mapper.map(workerRequest, Worker.class);
         toBeModified.setWorkerId(worker.getWorkerId());
-//        toBeModified.setGroup(group);
         return mapper.map(workerRepository.save(toBeModified), WorkerResponse.class);
     }
 
     public void deleteWorker(Integer id) {
         delete(id, workerRepository);
+    }
+
+    public List<WorkerResponse> getAllSorted(String property, Integer numOfPage, Integer numOfElements, Boolean isAscending) throws NoSuchFieldException {
+        return getAllSorted(WorkerResponse.class, workerRepository, property, numOfPage, numOfElements, isAscending);
     }
 
 }

@@ -4,17 +4,18 @@ import com.fecbo.companydeviceregister.client.entity.Department;
 import com.fecbo.companydeviceregister.client.repository.DepartmentRepository;
 import com.fecbo.companydeviceregister.controller.model.request.DepartmentRequest;
 import com.fecbo.companydeviceregister.controller.model.response.DepartmentResponse;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class DepartmentManager extends Manager {
 
     private final DepartmentRepository departmentRepository;
-    private final ModelMapper mapper;
 
+    public DepartmentManager(ModelMapper mapper, DepartmentRepository departmentRepository) {
+        super(mapper);
+        this.departmentRepository = departmentRepository;
+    }
 
     public DepartmentResponse addDepartment(DepartmentRequest departmentRequest) {
         Department department = mapper.map(departmentRequest, Department.class);

@@ -65,14 +65,14 @@ public class DeviceController {
 
     @Operation
     @GetMapping("/getAll")
-    public List<DeviceResponse> getAllByTimeOfRegistrationSorted(
+    public List<DeviceResponse> getAllDevicesSorted(
             @RequestParam(value = "property", defaultValue = "name") String property,
             @Parameter(description = "Starts with value of 0.")
             @RequestParam(value = "numOfPage", defaultValue = "0") Integer numOfPage,
             @RequestParam(value = "numOfElements", defaultValue = "5") Integer numOfElements,
             @RequestParam(value = "isAscending", defaultValue = "true") Boolean isAscending
     ) throws NoSuchFieldException {
-        return manager.getAllByTimeOfRegistrationSorted(property, numOfPage, numOfElements, isAscending);
+        return manager.getAllSorted(property, numOfPage, numOfElements, isAscending);
     }
 
     @ApiResponses(value = {

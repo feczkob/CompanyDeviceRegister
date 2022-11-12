@@ -5,6 +5,7 @@ import com.fecbo.companydeviceregister.business.WorkerManager;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/worker")
@@ -58,6 +62,18 @@ public class WorkerController {
     @GetMapping("/{id}")
     public WorkerResponse getWorkerById(@PathVariable("id") Integer id) {
         return manager.getWorkerById(id);
+    }
+
+    @Operation
+    @GetMapping("/getAll")
+    public List<WorkerResponse> getAllWorkersSorted(
+            @RequestParam(value = "property", defaultValue = "name") String property,
+            @Parameter(description = "Starts with value of 0.")
+            @RequestParam(value = "numOfPage", defaultValue = "0") Integer numOfPage,
+            @RequestParam(value = "numOfElements", defaultValue = "5") Integer numOfElements,
+            @RequestParam(value = "isAscending", defaultValue = "true") Boolean isAscending
+    ) throws NoSuchFieldException {
+        return manager.getAllSorted(property, numOfPage, numOfElements, isAscending);
     }
 
     @ApiResponses(value = {
