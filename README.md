@@ -10,7 +10,7 @@ Users can retrieve information about departments, groups and workers.
 
 ### Entity Relationship Diagram
 
-![ERD](erd.png?raw=true "ERD")
+![ERD](images/erd.png?raw=true "ERD")
 
 ### Endpoints
 
@@ -68,14 +68,14 @@ $ mvn spring-boot:run
 
 #### Workers page
 
-![workers](workers.png?raw=true "workers")
+![workers](images/workers.png?raw=true "workers")
 
 - Lists workers
 - User can navigate to the groups page
 
 #### Worker page
 
-![worker](worker.png?raw=true "worker")
+![worker](images/worker.png?raw=true "worker")
 
 - Shows a worker (it's name, group Id, details and list of devices)
 - User can delete device
@@ -85,7 +85,7 @@ $ mvn spring-boot:run
 
 #### Groups page
 
-![groups](groups.png?raw=true "groups")
+![groups](images/groups.png?raw=true "groups")
 
 - Lists groups (with their workers)
 - User can navigate to the group page
@@ -94,7 +94,7 @@ $ mvn spring-boot:run
 
 #### Group page
 
-![group](group.png?raw=true "group")
+![group](images/group.png?raw=true "group")
 
 - Shows a group (it's name, department Id, description and list of workers)
 - User can navigate to the worker page
