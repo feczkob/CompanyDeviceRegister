@@ -1,7 +1,9 @@
 package com.fecbo.companydeviceregister.business;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.client.entity.Device;
 import com.fecbo.companydeviceregister.client.repository.DeviceRepository;
+import com.fecbo.companydeviceregister.client.repository.WorkerRepository;
 import com.fecbo.companydeviceregister.controller.model.request.DeviceRequest;
 import com.fecbo.companydeviceregister.controller.model.response.DeviceResponse;
 import org.modelmapper.ModelMapper;
@@ -14,25 +16,28 @@ import java.util.List;
 public class DeviceManager extends Manager {
 
     private final DeviceRepository deviceRepository;
+    private final WorkerRepository workerRepository;
 
-    public DeviceManager(ModelMapper mapper, DeviceRepository deviceRepository) {
+    public DeviceManager(ModelMapper mapper, DeviceRepository deviceRepository, WorkerRepository workerRepository) {
         super(mapper);
         this.deviceRepository = deviceRepository;
+        this.workerRepository = workerRepository;
     }
 
-    public DeviceResponse addDevice(DeviceRequest deviceRequest) {
+    public DeviceResponse addDevice(DeviceRequest deviceRequest) throws MissingEntityException {
         Device device = mapper.map(deviceRequest, Device.class);
         device.setTimeOfRegistration(LocalDateTime.now());
+        load(deviceRequest.getWorkerId(), workerRepository);
         Device saved = deviceRepository.save(device);
         return mapper.map(saved, DeviceResponse.class);
     }
 
-    public DeviceResponse getDeviceById(Integer id) {
+    public DeviceResponse getDeviceById(Integer id) throws MissingEntityException {
         Device device = load(id, deviceRepository);
         return mapper.map(device, DeviceResponse.class);
     }
 
-    public void deleteDevice(Integer id) {
+    public void deleteDevice(Integer id) throws MissingEntityException {
         delete(id, deviceRepository);
     }
 

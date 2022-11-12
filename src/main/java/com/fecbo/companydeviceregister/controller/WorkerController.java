@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.WorkerManager;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
@@ -43,7 +44,7 @@ public class WorkerController {
     })
     @Operation
     @PostMapping
-    public WorkerResponse addWorker(@RequestBody WorkerRequest workerRequest) {
+    public WorkerResponse addWorker(@RequestBody WorkerRequest workerRequest) throws MissingEntityException {
         return manager.addWorker(workerRequest);
     }
 
@@ -60,7 +61,7 @@ public class WorkerController {
     })
     @Operation
     @GetMapping("/{id}")
-    public WorkerResponse getWorkerById(@PathVariable("id") Integer id) {
+    public WorkerResponse getWorkerById(@PathVariable("id") Integer id) throws MissingEntityException {
         return manager.getWorkerById(id);
     }
 
@@ -90,7 +91,7 @@ public class WorkerController {
     @Operation
     @PutMapping("/{id}")
     public WorkerResponse modifyWorker(@PathVariable("id") Integer id,
-                                       @RequestBody WorkerRequest workerRequest) {
+                                       @RequestBody WorkerRequest workerRequest) throws MissingEntityException {
         return manager.modifyWorker(id, workerRequest);
     }
 
@@ -105,7 +106,7 @@ public class WorkerController {
     })
     @Operation
     @DeleteMapping("/{id}")
-    public void deleteWorker(@PathVariable("id") Integer id) {
+    public void deleteWorker(@PathVariable("id") Integer id) throws MissingEntityException {
         manager.deleteWorker(id);
     }
 }

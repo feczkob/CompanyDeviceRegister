@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.GroupManager;
 import com.fecbo.companydeviceregister.controller.model.request.GroupRequest;
@@ -42,7 +43,7 @@ public class GroupController {
     })
     @Operation
     @PostMapping
-    public GroupResponse addGroup(@RequestBody GroupRequest groupRequest) {
+    public GroupResponse addGroup(@RequestBody GroupRequest groupRequest) throws MissingEntityException {
         return manager.addGroup(groupRequest);
     }
 
@@ -59,7 +60,7 @@ public class GroupController {
     })
     @Operation
     @GetMapping("/{id}")
-    public GroupResponse getGroupById(@PathVariable("id") Integer id) {
+    public GroupResponse getGroupById(@PathVariable("id") Integer id) throws MissingEntityException {
         return manager.getGroupById(id);
     }
 
@@ -86,7 +87,7 @@ public class GroupController {
     })
     @Operation
     @DeleteMapping("/{id}")
-    public void deleteGroup(@PathVariable("id") Integer id) {
+    public void deleteGroup(@PathVariable("id") Integer id) throws MissingEntityException {
         manager.deleteGroup(id);
     }
 }

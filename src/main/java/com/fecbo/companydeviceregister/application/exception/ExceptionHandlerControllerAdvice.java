@@ -23,6 +23,13 @@ public class ExceptionHandlerControllerAdvice {
     public ResponseEntity<RestApiError> handleNoSuchFieldException(NoSuchFieldException ex) {
         log.error(ex.getLocalizedMessage(), ex);
         RestApiError restApiError = new RestApiError(ex.getMessage());
+        return new ResponseEntity<>(restApiError, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MissingEntityException.class)
+    public ResponseEntity<RestApiError> handleMissingEntityException(MissingEntityException ex) {
+        log.error(ex.getLocalizedMessage(), ex);
+        RestApiError restApiError = new RestApiError(ex.getMessage());
         return new ResponseEntity<>(restApiError, HttpStatus.NOT_FOUND);
     }
 

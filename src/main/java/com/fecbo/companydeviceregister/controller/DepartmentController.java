@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.DepartmentManager;
 import com.fecbo.companydeviceregister.controller.model.request.DepartmentRequest;
@@ -52,7 +53,7 @@ public class DepartmentController {
     })
     @Operation
     @GetMapping("/{id}")
-    public DepartmentResponse getDepartmentById(@PathVariable("id") Integer id) {
+    public DepartmentResponse getDepartmentById(@PathVariable("id") Integer id) throws MissingEntityException {
         return manager.getDepartmentById(id);
     }
 }

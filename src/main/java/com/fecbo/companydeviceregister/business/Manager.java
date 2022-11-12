@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.business;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
@@ -9,22 +10,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 public abstract class Manager {
     protected final ModelMapper mapper;
 
-    <T, K extends JpaRepository> T load(Integer id, K repository) {
+    <T, K extends JpaRepository> T load(Integer id, K repository) throws MissingEntityException {
         Optional<T> found = repository.findById(id);
         if(found.isEmpty()) {
-            throw new NoSuchElementException("Entity" + " with id " + id + " not found.");
+            throw new MissingEntityException("Entity" + " with id " + id + " not found.");
         }
         return found.get();
     }
 
-    <T, K extends JpaRepository> void delete(Integer id, K repository) {
+    <T, K extends JpaRepository> void delete(Integer id, K repository) throws MissingEntityException {
         T loaded = load(id, repository);
         repository.delete(loaded);
     }

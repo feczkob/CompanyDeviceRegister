@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.business;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.client.entity.Department;
 import com.fecbo.companydeviceregister.client.repository.DepartmentRepository;
 import com.fecbo.companydeviceregister.controller.model.request.DepartmentRequest;
@@ -23,7 +24,7 @@ public class DepartmentManager extends Manager {
         return mapper.map(saved, DepartmentResponse.class);
     }
 
-    public DepartmentResponse getDepartmentById(Integer id) {
+    public DepartmentResponse getDepartmentById(Integer id) throws MissingEntityException {
         Department department = load(id, departmentRepository);
         return mapper.map(department, DepartmentResponse.class);
     }

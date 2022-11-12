@@ -1,5 +1,6 @@
 package com.fecbo.companydeviceregister.controller;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.DeviceManager;
 import com.fecbo.companydeviceregister.controller.model.request.DeviceRequest;
@@ -42,7 +43,7 @@ public class DeviceController {
     })
     @Operation
     @PostMapping
-    public DeviceResponse addDevice(@RequestBody DeviceRequest deviceRequest) {
+    public DeviceResponse addDevice(@RequestBody DeviceRequest deviceRequest) throws MissingEntityException {
         return manager.addDevice(deviceRequest);
     }
 
@@ -59,7 +60,7 @@ public class DeviceController {
     })
     @Operation
     @GetMapping("/{id}")
-    public DeviceResponse getDeviceById(@PathVariable("id") Integer id) {
+    public DeviceResponse getDeviceById(@PathVariable("id") Integer id) throws MissingEntityException {
         return manager.getDeviceById(id);
     }
 
@@ -86,7 +87,7 @@ public class DeviceController {
     })
     @Operation
     @DeleteMapping("/{id}")
-    public void deleteDevice(@PathVariable("id") Integer id) {
+    public void deleteDevice(@PathVariable("id") Integer id) throws MissingEntityException {
         manager.deleteDevice(id);
     }
 }

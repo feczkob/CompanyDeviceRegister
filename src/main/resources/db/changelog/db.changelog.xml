@@ -7,7 +7,7 @@
 
     <changeSet author="Feczkó Botond" id="Create general sequence">
         <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807"
-                        minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
+                        minValue="1" sequenceName="hibernate_sequence" startValue="100"/>
     </changeSet>
 
     <changeSet author="Feczkó Botond" id="Create department table">

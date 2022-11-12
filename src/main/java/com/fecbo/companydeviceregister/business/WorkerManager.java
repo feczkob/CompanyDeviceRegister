@@ -1,6 +1,8 @@
 package com.fecbo.companydeviceregister.business;
 
+import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.client.entity.Worker;
+import com.fecbo.companydeviceregister.client.repository.GroupRepository;
 import com.fecbo.companydeviceregister.client.repository.WorkerRepository;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
@@ -13,31 +15,34 @@ import java.util.List;
 public class WorkerManager extends Manager {
 
     private final WorkerRepository workerRepository;
+    private final GroupRepository groupRepository;
 
-    public WorkerManager(ModelMapper mapper, WorkerRepository workerRepository) {
+    public WorkerManager(ModelMapper mapper, WorkerRepository workerRepository, GroupRepository groupRepository) {
         super(mapper);
         this.workerRepository = workerRepository;
+        this.groupRepository = groupRepository;
     }
 
-    public WorkerResponse addWorker(WorkerRequest workerRequest) {
+    public WorkerResponse addWorker(WorkerRequest workerRequest) throws MissingEntityException {
         Worker worker = mapper.map(workerRequest, Worker.class);
+        load(worker.getGroupId(), groupRepository);
         Worker saved = workerRepository.save(worker);
         return mapper.map(saved, WorkerResponse.class);
     }
 
-    public WorkerResponse getWorkerById(Integer id) {
+    public WorkerResponse getWorkerById(Integer id) throws MissingEntityException {
         Worker worker = load(id, workerRepository);
         return mapper.map(worker, WorkerResponse.class);
     }
 
-    public WorkerResponse modifyWorker(Integer id, WorkerRequest workerRequest) {
+    public WorkerResponse modifyWorker(Integer id, WorkerRequest workerRequest) throws MissingEntityException {
         Worker worker = load(id, workerRepository);
         Worker toBeModified = mapper.map(workerRequest, Worker.class);
         toBeModified.setWorkerId(worker.getWorkerId());
         return mapper.map(workerRepository.save(toBeModified), WorkerResponse.class);
     }
 
-    public void deleteWorker(Integer id) {
+    public void deleteWorker(Integer id) throws MissingEntityException {
         delete(id, workerRepository);
     }
 
