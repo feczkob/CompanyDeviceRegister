@@ -103,3 +103,12 @@ $ mvn spring-boot:run
 - User can navigate to the worker page
 - User can navigate back
 - User can navigate either to the groups or to the workers page
+
+### How to run
+
+Execute the following commands to run the service:
+
+```console
+$ npm install
+$ ng serve
+```
