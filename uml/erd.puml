@@ -27,7 +27,8 @@ entity Device {
     --
     * worker_id: number <<FK>>
     * name: text
-    * value: number
+    * time_of_registration: timestamp
+
 }
 
 
