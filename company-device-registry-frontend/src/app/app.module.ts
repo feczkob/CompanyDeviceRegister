@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {WorkerService} from './services/worker.service';
 import {WorkerButtonDirective} from './directives/worker-button.directive';
 import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
+import {WorkerDetailRoutingModule} from './worker-detail/worker-detail-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    WorkerDetailRoutingModule
   ],
   providers: [WorkerService],
   bootstrap: [AppComponent]

@@ -1,1 +1,23 @@
-<p>worker-detail works!</p>
+<div class="worker-detail" *ngIf="worker">
+  <button type="button" (click)="goBack()">Back</button>
+  <h2>{{worker.name | uppercase}}</h2>
+  <p>{{worker.details}}</p>
+  <a [routerLink]="['/group/', worker.groupId]">GroupId: {{worker.groupId}}</a>
+  <h3>Devices</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Time of registration</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let device of worker.devices">
+      <td>{{device.name}}</td>
+      <td>{{device.timeOfRegistration | date: 'dd/MM/yyyy'}}</td>
+      <td>{{device.description}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

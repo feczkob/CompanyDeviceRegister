@@ -16,4 +16,8 @@ export class WorkerService {
   getWorkers(): Observable<Worker[]> {
     return this.http.get<Worker[]>(this.workerUrl + "/getAll");
   }
+
+  getWorkerById(id: string): Observable<Worker> {
+    return this.http.get<Worker>(this.workerUrl + "/" + id);
+  }
 }

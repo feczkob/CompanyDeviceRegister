@@ -1,0 +1,38 @@
+.worker-detail button {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: stretch;
+}
+
+.worker-detail h2 {
+  text-align: center;
+}
+
+.worker-detail p {
+  border-radius: 2px;
+  padding: 1rem;
+  margin: 5px auto;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: block;
+}
+
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
