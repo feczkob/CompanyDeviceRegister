@@ -1,0 +1,23 @@
+h2 {
+  text-align: center;
+}
+
+
+a {
+  background-color: #3f525c;
+  border-radius: 2px;
+  padding: 1rem;
+  margin: 5px auto;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  text-align: center;
+  width: 50%;
+  min-width: 70px;
+  box-sizing: border-box;
+}
+
+a:hover {
+  background-color: #000;
+}

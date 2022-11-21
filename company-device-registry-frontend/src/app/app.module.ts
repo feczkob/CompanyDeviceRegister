@@ -8,12 +8,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {WorkerService} from './services/worker.service';
+import {WorkerButtonDirective} from './directives/worker-button.directive';
+import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkersComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    WorkerButtonDirective,
+    WorkerDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,6 @@
-<p>workers works!</p>
+<h2>Workers</h2>
+<div class="worker-menu">
+  <a *ngFor="let worker of workers" [routerLink]="['/worker/', worker.workerId]">
+    {{worker.name}}
+  </a>
+</div>
