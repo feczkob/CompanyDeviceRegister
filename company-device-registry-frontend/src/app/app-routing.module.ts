@@ -10,6 +10,10 @@ const routes: Routes = [
     component: WorkersComponent
   },
   {
+    path: 'groups',
+    component: GroupsComponent
+  },
+  {
     path: 'worker/:id',
     component: WorkerDetailComponent
   },

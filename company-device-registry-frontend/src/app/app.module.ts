@@ -11,6 +11,7 @@ import {WorkerService} from './services/worker.service';
 import {WorkerButtonDirective} from './directives/worker-button.directive';
 import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 import {WorkerDetailRoutingModule} from './worker-detail/worker-detail-routing.module';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {WorkerDetailRoutingModule} from './worker-detail/worker-detail-routing.m
     WorkersComponent,
     PageNotFoundComponent,
     WorkerButtonDirective,
-    WorkerDetailComponent
+    WorkerDetailComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,
