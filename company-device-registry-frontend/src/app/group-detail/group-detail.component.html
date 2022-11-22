@@ -1,0 +1,7 @@
+<div class="group-detail" *ngIf="group">
+  <button type="button" (click)="goBack()">Back</button>
+  <h2>{{group.name}}</h2>
+  <p>{{group.description}}</p>
+  <h3>Workers</h3>
+  <app-group-workers [workers]="group.workers"></app-group-workers>
+</div>

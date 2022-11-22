@@ -1,0 +1,5 @@
+<div #groupDiv class="workers" *ngFor="let worker of workers">
+  <button [routerLink]="['/worker/', worker.workerId]" workerButton type="button">
+    <span class="name">{{worker.name}}</span>
+  </button>
+</div>

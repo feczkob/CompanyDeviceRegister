@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {WorkersComponent} from './workers/workers.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {WorkerDetailComponent} from './worker-detail/worker-detail.component';
+import {GroupsComponent} from './groups/groups.component';
+import {GroupDetailComponent} from './group-detail/group-detail.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,10 @@ const routes: Routes = [
   {
     path: 'worker/:id',
     component: WorkerDetailComponent
+  },
+  {
+    path: 'group/:id',
+    component: GroupDetailComponent
   },
   {
     path: '',

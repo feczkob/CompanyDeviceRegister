@@ -1,1 +1,6 @@
-<p>groups works!</p>
+<div style="width: 15em;" *ngFor="let group of groups">
+  <button class="group-name" [routerLink]="['/group/', group.groupId]">
+    {{group.name}}
+  </button>
+  <app-group-workers [workers]="group.workers"></app-group-workers>
+</div>

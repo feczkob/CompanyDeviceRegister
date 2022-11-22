@@ -12,6 +12,8 @@ import {WorkerButtonDirective} from './directives/worker-button.directive';
 import { WorkerDetailComponent } from './worker-detail/worker-detail.component';
 import {WorkerDetailRoutingModule} from './worker-detail/worker-detail-routing.module';
 import { GroupsComponent } from './groups/groups.component';
+import { GroupWorkersComponent } from './group-workers/group-workers.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { GroupsComponent } from './groups/groups.component';
     PageNotFoundComponent,
     WorkerButtonDirective,
     WorkerDetailComponent,
-    GroupsComponent
+    GroupsComponent,
+    GroupWorkersComponent,
+    GroupDetailComponent
   ],
   imports: [
     BrowserModule,

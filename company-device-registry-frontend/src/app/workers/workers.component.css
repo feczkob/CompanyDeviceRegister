@@ -20,3 +20,60 @@ a {
 a:hover {
   background-color: #000;
 }
+
+.workers {
+  margin: 0 auto 2em auto;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+
+.workers div {
+  display: flex;
+}
+
+.workers button {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: stretch;
+  width: 300px;
+}
+
+.workers button:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+  left: .1em;
+}
+
+.workers button:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.workers button.selected {
+  background-color: black!important;
+  color: white;
+}
+
+.workers button.selected:hover {
+  background-color: #505050!important;
+  color: white;
+}
+
+.workers button.selected:active {
+  background-color: black!important;
+  color: white;
+}
+
+.workers .name {
+  align-self: center;
+  width: 220px;
+}
+
