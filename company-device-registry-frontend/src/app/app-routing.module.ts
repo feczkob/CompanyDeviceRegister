@@ -9,11 +9,11 @@ import {GroupDetailComponent} from './group-detail/group-detail.component';
 const routes: Routes = [
   {
     path: 'workers',
-    component: WorkersComponent
+    loadChildren: () => import('./workers/workers.module').then(m => m.WorkersModule)
   },
   {
     path: 'groups',
-    component: GroupsComponent
+    loadChildren: () => import('./groups/groups.module').then(m => m.GroupsModule)
   },
   {
     path: 'worker/:id',

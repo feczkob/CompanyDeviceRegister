@@ -14,16 +14,15 @@ import {WorkerDetailRoutingModule} from './worker-detail/worker-detail-routing.m
 import { GroupsComponent } from './groups/groups.component';
 import { GroupWorkersComponent } from './group-workers/group-workers.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
+import {GroupsModule} from "./groups/groups.module";
+import {WorkersModule} from "./workers/workers.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkersComponent,
     PageNotFoundComponent,
     WorkerButtonDirective,
     WorkerDetailComponent,
-    GroupsComponent,
-    GroupWorkersComponent,
     GroupDetailComponent
   ],
   imports: [
@@ -31,7 +30,9 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    WorkerDetailRoutingModule
+    WorkerDetailRoutingModule,
+    GroupsModule,
+    WorkersModule
   ],
   providers: [WorkerService],
   bootstrap: [AppComponent]
