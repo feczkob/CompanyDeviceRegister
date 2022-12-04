@@ -32,14 +32,14 @@ public class DeviceController {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = DeviceResponse.class))}),
             @ApiResponse(responseCode = "400", description = "Bad request",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))}),
             @ApiResponse(responseCode = "500", description = "Internal server error",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) })
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))})
     })
     @Operation
     @PostMapping
@@ -49,14 +49,14 @@ public class DeviceController {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = DeviceResponse.class))}),
             @ApiResponse(responseCode = "400", description = "Bad request",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))}),
             @ApiResponse(responseCode = "500", description = "Internal server error",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) })
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))})
     })
     @Operation
     @GetMapping("/{id}")
@@ -79,11 +79,11 @@ public class DeviceController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation"),
             @ApiResponse(responseCode = "400", description = "Bad request",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))}),
             @ApiResponse(responseCode = "500", description = "Internal server error",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RestApiError.class)) })
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestApiError.class))})
     })
     @Operation
     @DeleteMapping("/{id}")
