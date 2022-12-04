@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Add device</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput required minlength="3" [(ngModel)]="data.name" #name="ngModel">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput minlength="3" [(ngModel)]="data.description" #description="ngModel">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" (click)="addDevice()"
+          cdkFocusInitial [disabled]="!name.valid || !description.valid">Ok</button>
+</div>

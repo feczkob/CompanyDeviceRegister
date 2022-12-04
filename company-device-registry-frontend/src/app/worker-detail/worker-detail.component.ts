@@ -5,6 +5,8 @@ import {WorkerService} from '../services/worker.service';
 import {Location} from '@angular/common';
 import {HttpResponse} from '@angular/common/http';
 import {DeviceService} from '../services/device.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DeviceDialogComponent} from './device-dialog/device-dialog.component';
 
 @Component({
   selector: 'app-worker-detail',
@@ -18,7 +20,8 @@ export class WorkerDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private workerService: WorkerService,
               private deviceService: DeviceService,
-              private location: Location) { }
+              private location: Location,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initWorker();
@@ -67,5 +70,17 @@ export class WorkerDetailComponent implements OnInit {
   deleteDevice(deviceId: number) {
     this.deviceService.deleteDevice(deviceId.toString())
       .subscribe(x => location.reload());
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeviceDialogComponent, {
+      width: '250px',
+      height: '300px',
+      data: {workerId: this.worker?.workerId, name: '', description: ''},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      location.reload();
+    });
   }
 }
