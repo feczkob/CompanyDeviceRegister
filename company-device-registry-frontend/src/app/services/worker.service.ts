@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Worker} from '../workers/model/worker.model';
 
@@ -19,5 +19,9 @@ export class WorkerService {
 
   getWorkerById(id: string): Observable<Worker> {
     return this.http.get<Worker>(this.workerUrl + "/" + id);
+  }
+
+  downloadReport(id: string): Observable<HttpResponse<Blob>> {
+    return this.http.get(this.workerUrl + "/downloadWorker/" + id, {observe: 'response', responseType: 'blob'});
   }
 }

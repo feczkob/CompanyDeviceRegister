@@ -3,6 +3,7 @@
   <h2>{{worker.name | uppercase}}</h2>
   <p>{{worker.details}}</p>
   <a [routerLink]="['/group/', worker.groupId]">GroupId: {{worker.groupId}}</a>
+  <button type="button" (click)="download()">Download report</button>
   <h3>Devices</h3>
   <table>
     <thead>

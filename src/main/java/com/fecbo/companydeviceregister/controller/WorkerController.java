@@ -1,6 +1,5 @@
 package com.fecbo.companydeviceregister.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fecbo.companydeviceregister.application.exception.MissingEntityException;
 import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.WorkerManager;
@@ -13,8 +12,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -37,7 +35,6 @@ import java.util.List;
 public class WorkerController {
 
     private final WorkerManager manager;
-    private final ObjectMapper mapper;
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation",
@@ -76,14 +73,12 @@ public class WorkerController {
 
     @Secured("ROLE_ADMIN")
     @Operation
-    @GetMapping("/downloadWorker/{id}")
+    @GetMapping(value = "/downloadWorker/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public void downloadWorker(@PathVariable("id") Integer id, HttpServletResponse response) throws MissingEntityException, IOException {
         // * check https://www.techgeeknext.com/exportpdfs
 
         WorkerResponse worker = manager.getWorkerById(id);
-        ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
-                .filename(generateFileName(worker.getWorkerId()), StandardCharsets.UTF_8).build();
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, contentDisposition.toString());
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + generateFileName(worker.getWorkerId()));
         PdfGenerator.workerReport(response, worker);
     }
 
