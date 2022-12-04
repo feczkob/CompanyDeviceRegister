@@ -50,6 +50,7 @@ public class WorkerController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = RestApiError.class))})
     })
+    @Secured("ROLE_ADMIN")
     @Operation
     @PostMapping
     public WorkerResponse addWorker(@RequestBody WorkerRequest workerRequest) throws MissingEntityException {

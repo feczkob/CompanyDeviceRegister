@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 public class ExceptionHandlerControllerAdvice {
 
     @ExceptionHandler({NoSuchElementException.class, MissingEntityException.class})
-    public ResponseEntity<RestApiError> handleNoSuchElement(NoSuchElementException ex) {
+    public ResponseEntity<RestApiError> handleNoSuchMissing(Exception ex) {
         log.error(ex.getLocalizedMessage(), ex);
         RestApiError restApiError = new RestApiError(ex.getMessage());
         return new ResponseEntity<>(restApiError, HttpStatus.NOT_FOUND);
@@ -31,7 +31,7 @@ public class ExceptionHandlerControllerAdvice {
     public ResponseEntity<RestApiError> handleAccessDeniedException(AccessDeniedException ex) {
         log.error(ex.getLocalizedMessage(), ex);
         RestApiError restApiError = new RestApiError(ex.getMessage());
-        return new ResponseEntity<>(restApiError, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(restApiError, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(RuntimeException.class)

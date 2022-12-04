@@ -19,4 +19,7 @@ public class WorkerRequest {
     @NotBlank(message = "error.'${validatedValue}'.empty")
     private String name;
     private String details;
+
+    @NotBlank(message = "error.'${validatedValue}'.empty")
+    private String password;
 }
