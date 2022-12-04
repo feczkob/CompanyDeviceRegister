@@ -75,8 +75,9 @@ public class WorkerController {
     @Operation
     @GetMapping("/downloadWorker/{id}")
     public void downloadWorker(@PathVariable("id") Integer id, HttpServletResponse response) throws MissingEntityException, IOException {
-        WorkerResponse worker = manager.getWorkerById(id);
+        // * check https://www.techgeeknext.com/exportpdfs
 
+        WorkerResponse worker = manager.getWorkerById(id);
         ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
                 .filename(generateFileName(worker.getWorkerId()), StandardCharsets.UTF_8).build();
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, contentDisposition.toString());
