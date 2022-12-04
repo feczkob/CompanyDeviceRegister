@@ -2,11 +2,13 @@ package com.fecbo.companydeviceregister.client.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,6 +32,7 @@ import java.util.Set;
 @Entity
 @Table(name = "worker")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Worker {
 
     @Id
@@ -62,4 +65,18 @@ public class Worker {
     @JsonManagedReference
     @ToString.Include
     private Set<Device> devices = new HashSet<>();
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "password")
+    private String password;
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+        System.out.println(b.encode("password"));
+    }
 }

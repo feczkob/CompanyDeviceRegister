@@ -102,7 +102,7 @@
                                  onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="department_id"
                                  referencedTableName="department" validate="true"/>
     </changeSet>
-    
+
     <changeSet id="Create dummy data" author="Feczkó Botond">
         <insert tableName="department">
             <column name="department_id" value="1"/>
@@ -124,7 +124,8 @@
             <column name="department_id" value="2"/>
             <column name="group_id" value="2"/>
             <column name="name" value="Developers"/>
-            <column name="description" value="There are 10 types of people - those who can understand binary and those who can't."/>
+            <column name="description"
+                    value="There are 10 types of people - those who can understand binary and those who can't."/>
         </insert>
         <insert tableName="group_">
             <column name="department_id" value="2"/>
@@ -134,7 +135,7 @@
         </insert>
         <insert tableName="worker">
             <column name="worker_id" value="1"/>
-            <column name="details" value="Loves Candy Crush" />
+            <column name="details" value="Loves Candy Crush"/>
             <column name="name" value="Juci"/>
             <column name="group_id" value="1"/>
         </insert>
@@ -204,5 +205,51 @@
             INSERT INTO device (device_id, description, name, worker_id, time_of_registration)
             VALUES (12, '', 'Apple Watch', 4, '2022-8-24 8:10:25')
         </sql>
+    </changeSet>
+
+    <changeSet id="Add username, role and password attributes" author="Feczkó Botond">
+        <addColumn tableName="worker">
+            <column name="username" type="VARCHAR(255)"/>
+        </addColumn>
+        <addColumn tableName="worker">
+            <column name="role" type="VARCHAR(255)"/>
+        </addColumn>
+        <addColumn tableName="worker">
+            <column name="password" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="Seed data to already existing rows" author="Feczkó Botond">
+        <update tableName="worker">
+            <column name="username" value="juci"/>
+            <column name="role" value="ROLE_USER"/>
+            <!--            password: password-->
+            <column name="password" value="$2a$10$05Gj079u2CKdibgj1KXkw.B8kBYhgwlwifDRCVZdA7OZhKBytqnS."/>
+            <where>worker_id=1</where>
+        </update>
+        <update tableName="worker">
+            <column name="username" value="pista"/>
+            <column name="role" value="ROLE_ADMIN"/>
+            <column name="password" value="$2a$10$05Gj079u2CKdibgj1KXkw.B8kBYhgwlwifDRCVZdA7OZhKBytqnS."/>
+            <where>worker_id=2</where>
+        </update>
+        <update tableName="worker">
+            <column name="username" value="sanyi"/>
+            <column name="role" value="ROLE_USER"/>
+            <column name="password" value="$2a$10$05Gj079u2CKdibgj1KXkw.B8kBYhgwlwifDRCVZdA7OZhKBytqnS."/>
+            <where>worker_id=3</where>
+        </update>
+        <update tableName="worker">
+            <column name="username" value="peti"/>
+            <column name="role" value="ROLE_USER"/>
+            <column name="password" value="$2a$10$05Gj079u2CKdibgj1KXkw.B8kBYhgwlwifDRCVZdA7OZhKBytqnS."/>
+            <where>worker_id=4</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="Add nullable false constraint to username, role, password" author="Feczkó Botond">
+        <addNotNullConstraint tableName="worker" columnName="username"/>
+        <addNotNullConstraint tableName="worker" columnName="role"/>
+        <addNotNullConstraint tableName="worker" columnName="password"/>
     </changeSet>
 </databaseChangeLog>
