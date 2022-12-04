@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,7 @@ public class WorkerController {
         return manager.getWorkerById(id);
     }
 
+    @Secured("ROLE_ADMIN")
     @Operation
     @GetMapping("/downloadWorker/{id}")
     public void downloadWorker(@PathVariable("id") Integer id, HttpServletResponse response) throws MissingEntityException, IOException {
