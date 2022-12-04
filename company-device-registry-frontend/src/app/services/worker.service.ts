@@ -24,4 +24,8 @@ export class WorkerService {
   downloadReport(id: string): Observable<HttpResponse<Blob>> {
     return this.http.get(this.workerUrl + "/downloadWorker/" + id, {observe: 'response', responseType: 'blob'});
   }
+
+  deleteWorker(id: string): Observable<HttpResponse<any>> {
+    return this.http.delete(this.workerUrl + "/" + id, {observe: 'response'});
+  }
 }

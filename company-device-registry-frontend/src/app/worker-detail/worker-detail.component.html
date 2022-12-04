@@ -11,6 +11,7 @@
       <th>Name</th>
       <th>Time of registration</th>
       <th>Description</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -18,7 +19,9 @@
       <td>{{device.name}}</td>
       <td>{{device.timeOfRegistration | date: 'dd/MM/yyyy'}}</td>
       <td>{{device.description}}</td>
+      <td><button type="button" (click)="deleteDevice(device.deviceId)">Delete</button> </td>
     </tr>
     </tbody>
   </table>
+  <button type="button" (click)="deleteWorker()">Delete worker</button>
 </div>

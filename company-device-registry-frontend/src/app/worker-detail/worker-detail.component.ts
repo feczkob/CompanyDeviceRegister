@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {WorkerService} from '../services/worker.service';
 import {Location} from '@angular/common';
 import {HttpResponse} from '@angular/common/http';
+import {DeviceService} from '../services/device.service';
 
 @Component({
   selector: 'app-worker-detail',
@@ -16,6 +17,7 @@ export class WorkerDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private workerService: WorkerService,
+              private deviceService: DeviceService,
               private location: Location) { }
 
   ngOnInit(): void {
@@ -55,5 +57,15 @@ export class WorkerDetailComponent implements OnInit {
         }, 100);
 
       });
+  }
+
+  deleteWorker() {
+    this.workerService.deleteWorker(this.worker!.workerId.toString())
+      .subscribe(x => this.goBack());
+  }
+
+  deleteDevice(deviceId: number) {
+    this.deviceService.deleteDevice(deviceId.toString())
+      .subscribe(x => location.reload());
   }
 }
