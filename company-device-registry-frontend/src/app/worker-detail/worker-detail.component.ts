@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Worker} from '../workers/model/worker.model';
 import {ActivatedRoute} from '@angular/router';
 import {WorkerService} from '../services/worker.service';
@@ -15,13 +15,14 @@ import {DeviceDialogComponent} from './device-dialog/device-dialog.component';
 })
 export class WorkerDetailComponent implements OnInit {
 
-  worker : Worker | undefined;
+  worker: Worker | undefined;
 
   constructor(private route: ActivatedRoute,
               private workerService: WorkerService,
               private deviceService: DeviceService,
               private location: Location,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.initWorker();
@@ -41,24 +42,30 @@ export class WorkerDetailComponent implements OnInit {
 
   download() {
     this.workerService.downloadReport(this.worker!.workerId.toString())
-      .subscribe((response: HttpResponse<Blob>): void => {
-        const file = new Blob([response.body as BlobPart],  { type: "application/pdf" });
-        let fileName = response.headers.get('content-disposition')!;
-        fileName = fileName?.substring(fileName.lastIndexOf("filename=") + "filename=".length);
+      .subscribe({
+        next: (response: HttpResponse<Blob>): void => {
+          const file = new Blob([response.body as BlobPart], {type: 'application/pdf'});
+          let fileName = response.headers.get('content-disposition')!;
+          fileName = fileName?.substring(fileName.lastIndexOf('filename=') + 'filename='.length);
 
-        const data = window.URL.createObjectURL(file);
-        const link = document.createElement('a');
-        link.href = data;
-        link.download = fileName!;
-        // this is necessary as link.click() does not work on the latest firefox
-        link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+          const data = window.URL.createObjectURL(file);
+          const link = document.createElement('a');
+          link.href = data;
+          link.download = fileName!;
+          // this is necessary as link.click() does not work on the latest firefox
+          link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
 
-        setTimeout(function () {
-          // For Firefox it is necessary to delay revoking the ObjectURL
-          window.URL.revokeObjectURL(data);
-          link.remove();
-        }, 100);
-
+          setTimeout(function() {
+            // For Firefox it is necessary to delay revoking the ObjectURL
+            window.URL.revokeObjectURL(data);
+            link.remove();
+          }, 100);
+        },
+        error: error => {
+          if(error.status === 403) {
+            alert("Forbidden.")
+          }
+        }
       });
   }
 

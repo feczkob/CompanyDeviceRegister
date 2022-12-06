@@ -65,6 +65,14 @@ $ mvn liquibase:update
 $ mvn spring-boot:run
 ```
 
+When the service has started, visit the swagger page:
+[Swagger](http://localhost:8080/swagger-ui/index.html)
+
+Credentials: pista - password
+
+User pista has both ADMIN and USER roles, while the others have only USER. The following users are defined: juci, pista, sanyi, peti. 
+The password is always 'password'.
+
 ## Frontend
 
 ### Pages
