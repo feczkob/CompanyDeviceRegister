@@ -93,6 +93,7 @@ The password is always 'password'.
 - User can add device
 - User can navigate back
 - User can navigate either to the groups or to the workers page
+- User with role ADMIN can download worker report
 
 #### Groups page
 
@@ -117,6 +118,7 @@ The password is always 'password'.
 Execute the following commands to run the service:
 
 ```console
+$ cd company-device-registry-frontend
 $ npm install
 $ ng serve
 ```

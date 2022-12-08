@@ -1,4 +1,4 @@
-package com.fecbo.companydeviceregister.controller;
+package com.fecbo.companydeviceregister.controller.util;
 
 import com.fecbo.companydeviceregister.controller.model.response.DeviceResponse;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;

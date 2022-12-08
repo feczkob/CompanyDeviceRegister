@@ -5,6 +5,7 @@ import com.fecbo.companydeviceregister.application.exception.RestApiError;
 import com.fecbo.companydeviceregister.business.WorkerManager;
 import com.fecbo.companydeviceregister.controller.model.request.WorkerRequest;
 import com.fecbo.companydeviceregister.controller.model.response.WorkerResponse;
+import com.fecbo.companydeviceregister.controller.util.PdfGenerator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
